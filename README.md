@@ -6,6 +6,12 @@ Master Canvas is a local-first pre-production canvas for AI video projects. This
 
 The plugin does not generate video by itself. It gives Hermes reliable tools for building and maintaining the complete pre-production package that downstream video generation tools need.
 
+## Preview
+
+Example Master Canvas board with assets, ordered shots, per-shot prompt fields, handoff readiness, and the minimap overview. The Hermes plugin can create and maintain this kind of package autonomously from a brief and local assets.
+
+![Master Canvas autonomous video pre-production board](docs/screenshots/master-canvas-autonomous-preview.jpeg)
+
 ## Install
 
 ```bash
