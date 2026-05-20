@@ -9,16 +9,24 @@ try:
     from .tools import (
         handle_capabilities,
         handle_comfy_plan,
+        handle_create_package,
         handle_extract_package,
         handle_inspect_package,
+        handle_package_zip,
+        handle_upsert_scene,
+        handle_upsert_shot,
     )
 except ImportError:
     import schemas
     from tools import (
         handle_capabilities,
         handle_comfy_plan,
+        handle_create_package,
         handle_extract_package,
         handle_inspect_package,
+        handle_package_zip,
+        handle_upsert_scene,
+        handle_upsert_shot,
     )
 
 
@@ -28,6 +36,30 @@ TOOLS = [
         schemas.MASTERCANVAS_CAPABILITIES,
         handle_capabilities,
         "Explain how to use Master Canvas handoff packages.",
+    ),
+    (
+        "mastercanvas_create_package",
+        schemas.MASTERCANVAS_CREATE_PACKAGE,
+        handle_create_package,
+        "Create a Master Canvas handoff package from a brief, scenes, shots, and assets.",
+    ),
+    (
+        "mastercanvas_upsert_scene",
+        schemas.MASTERCANVAS_UPSERT_SCENE,
+        handle_upsert_scene,
+        "Add or update a scene in a Master Canvas handoff manifest.",
+    ),
+    (
+        "mastercanvas_upsert_shot",
+        schemas.MASTERCANVAS_UPSERT_SHOT,
+        handle_upsert_shot,
+        "Add or update a shot in a Master Canvas handoff manifest.",
+    ),
+    (
+        "mastercanvas_package_zip",
+        schemas.MASTERCANVAS_PACKAGE_ZIP,
+        handle_package_zip,
+        "Package an extracted Master Canvas handoff folder as a ZIP.",
     ),
     (
         "mastercanvas_inspect_package",

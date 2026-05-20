@@ -1,7 +1,7 @@
 ---
 name: handoff
-description: Work with Master Canvas AI video handoff packages. Use when a user provides a Master Canvas ZIP or project_manifest.json and wants Hermes to inspect assets, preserve scene and shot order, prepare ComfyUI/LTX 2.3 jobs, or hand off prompts to Kling, Veo, or another video generation operator.
-version: 1.0.0
+description: Work with Master Canvas AI video handoff packages. Use when a user provides a Master Canvas ZIP or project_manifest.json and wants Hermes to inspect assets, preserve scene and shot order, prepare ComfyUI/LTX 2.3 jobs, or hand off prompts to Kling, Veo, or another video generation operator. Also use when a user wants Hermes to autonomously create, update, and package a Master Canvas pre-production project from a brief, scenes, shots, prompts, references, and local assets.
+version: 1.1.0
 author: Wasserman Productions
 license: MIT
 platforms: [macos, linux, windows]
@@ -14,6 +14,8 @@ metadata:
 
 Use this skill when a user gives Hermes a Master Canvas handoff ZIP, extracted package folder, or `project_manifest.json` and wants video-generation work planned or executed from that package.
 
+Also use it when the user wants Hermes to operate Master Canvas autonomously. In that mode, Hermes should create and maintain a Master Canvas-compatible package directly: scenes, shots, prompts, negative prompts, copied assets, references, ComfyUI/LTX jobs, Kling/Veo prompt sheets, and deliverable bins.
+
 ## Default Workflow
 
 1. Inspect the package with `mastercanvas_inspect_package`.
@@ -21,6 +23,18 @@ Use this skill when a user gives Hermes a Master Canvas handoff ZIP, extracted p
 3. Build the ComfyUI/LTX plan with `mastercanvas_comfy_plan`.
 4. Treat `project_manifest.json` as the source of truth for scene order, shot order, prompts, negative prompts, references, and output bins.
 5. Keep outputs organized by scene using `deliverables/bin_plan.json` or the `outputBin` fields in the plan.
+
+## Autonomous Master Canvas Workflow
+
+When the user wants Hermes to create or manage a Master Canvas project:
+
+1. Use `mastercanvas_create_package` to create the package from the brief, scene list, shot list, prompts, and local asset paths.
+2. Use `mastercanvas_upsert_scene` when the user changes the scene structure, scene description, style prompt, or music prompt.
+3. Use `mastercanvas_upsert_shot` when the user adds or changes a shot, source image, prompt, negative prompt, camera direction, lens, lighting, duration, or notes.
+4. Use `mastercanvas_inspect_package` after changes to confirm scene count, shot count, missing assets, and readiness.
+5. Use `mastercanvas_package_zip` when the package is ready to share, archive, or send into downstream generation.
+
+In autonomous mode, keep the package compatible with the Master Canvas app handoff contract. Do not invent a separate schema unless the user explicitly asks for a different format.
 
 ## Package Contract
 
