@@ -1,0 +1,10 @@
+name: master-canvas
+version: 1.0.0
+description: Inspect, extract, and plan Master Canvas handoff packages for AI video generation workflows.
+provides_tools:
+  - mastercanvas_capabilities
+  - mastercanvas_inspect_package
+  - mastercanvas_extract_package
+  - mastercanvas_comfy_plan
+provides_skills:
+  - handoff
